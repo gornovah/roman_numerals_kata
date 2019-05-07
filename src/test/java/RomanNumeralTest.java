@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -7,28 +9,20 @@ public class RomanNumeralTest {
 
     private RomanNumber romanNumberConverter;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     public void setUp() {
         romanNumberConverter = new RomanNumber();
     }
 
-    @Test
-    public void convert_arabics_to_romans_first_number() {
-        String romanNumber = romanNumberConverter.convert(1);
-        assertThat(romanNumber, is("I"));
+    @ParameterizedTest
+    @CsvSource({"1 , I",
+                "2, II",
+                "3, III",
+                "5, V",
+                "8, VIII"})
+    public void convert_arabics_to_romans_first_number(int input, String expected) {
+        String romanNumber = romanNumberConverter.convert(input);
+        assertThat(romanNumber, is(expected));
     }
-
-    @Test
-    public void convert_arabics_to_romans_number_three() {
-        String romanNumber = romanNumberConverter.convert(3);
-        assertThat(romanNumber, is("III"));
-    }
-
-    @Test
-    public void convert_arabics_to_romans_number_five() {
-        String romanNumber = romanNumberConverter.convert(5);
-        assertThat(romanNumber, is("V"));
-    }
-
 
 }
