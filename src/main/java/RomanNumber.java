@@ -6,15 +6,35 @@ public class RomanNumber {
 
         Map<Integer, String> dictionary = new HashMap<Integer, String>();
         dictionary.put(1, "I");
-        dictionary.put(2, "II");
-        dictionary.put(3, "III");
         dictionary.put(4, "IV");
         dictionary.put(5, "V");
-        dictionary.put(6, "VI");
-        dictionary.put(7, "VII");
-        dictionary.put(8, "VIII");
-        dictionary.put(9, "XI");
         dictionary.put(10, "X");
-        return dictionary.get(number);
+        dictionary.put(40, "XL");
+        if (dictionary.containsKey(number)) {
+            return dictionary.get(number);
+        }
+
+        String result = "";
+        while (number >= 40){
+            result += "XL";
+            number += -40;
+        }
+        while (number >= 10){
+            result += "X";
+            number += -10;
+        }
+        while (number >= 5){
+            result += "V";
+            number += -5;
+        }
+        while (number >= 4){
+            result += "IV";
+            number += -4;
+        }
+        while (number >= 1){
+            result += "I";
+            number += -1;
+        }
+        return result;
     }
 }

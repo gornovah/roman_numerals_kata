@@ -16,12 +16,15 @@ public class RomanNumeralTest {
 
     @ParameterizedTest
     @CsvSource({"1 , I",
-                "2, II",
-                "3, III",
+                "2 , II",
                 "4, IV",
                 "5, V",
                 "8, VIII",
-                "10, X"
+                "10, X",
+                "11, XI",
+                "40, XL",
+                "44, XLIV"
+
     })
     public void convert_arabics_to_romans_first_number(int input, String expected) {
         String romanNumber = romanNumberConverter.convert(input);
