@@ -18,8 +18,11 @@ public class RomanNumeralTest {
     @CsvSource({"1 , I",
                 "2, II",
                 "3, III",
+                "4, IV",
                 "5, V",
-                "8, VIII"})
+                "8, VIII",
+                "10, X"
+    })
     public void convert_arabics_to_romans_first_number(int input, String expected) {
         String romanNumber = romanNumberConverter.convert(input);
         assertThat(romanNumber, is(expected));
