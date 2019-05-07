@@ -1,39 +1,34 @@
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RomanNumber {
     public String convert(int number) {
 
-        Map<Integer, String> dictionary = new HashMap<Integer, String>();
-        dictionary.put(1, "I");
-        dictionary.put(4, "IV");
-        dictionary.put(5, "V");
-        dictionary.put(10, "X");
+        Map<Integer, String> dictionary = new LinkedHashMap<>();
+
+        dictionary.put(1000, "M");
+        dictionary.put(900, "CM");
+        dictionary.put(500, "D");
+        dictionary.put(400, "CD");
+        dictionary.put(100, "C");
+        dictionary.put(90, "XC");
+        dictionary.put(50, "L");
         dictionary.put(40, "XL");
-        if (dictionary.containsKey(number)) {
-            return dictionary.get(number);
-        }
+        dictionary.put(10, "X");
+        dictionary.put(9, "IX");
+        dictionary.put(5, "V");
+        dictionary.put(4, "IV");
+        dictionary.put(1, "I");
 
         String result = "";
-        while (number >= 40){
-            result += "XL";
-            number += -40;
-        }
-        while (number >= 10){
-            result += "X";
-            number += -10;
-        }
-        while (number >= 5){
-            result += "V";
-            number += -5;
-        }
-        while (number >= 4){
-            result += "IV";
-            number += -4;
-        }
-        while (number >= 1){
-            result += "I";
-            number += -1;
+
+        for (Map.Entry<Integer, String> entry : dictionary.entrySet()) {
+            int arabicNumber = entry.getKey();
+            String romanNumber = entry.getValue();
+            while (number >= arabicNumber) {
+                result += romanNumber;
+                number -= arabicNumber;
+            }
         }
         return result;
     }
