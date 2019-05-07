@@ -5,6 +5,8 @@ public class RomanNumber {
             for (int i=0; i < number; i++){
                 result = result + "I";
             }
+        } else {
+            result = "V";
         }
         return result;
     }
